@@ -32,7 +32,7 @@ public class Show {
 
     public boolean addActor(Actor actor) {
         if (listOfActors.contains(actor)) {
-            System.out.println("Актер " + actor + " уже участвует в спектакле '" + title +"'");
+            System.out.println("Актер " + actor + " уже участвует в спектакле '" + title + "'");
             return false;
         }
         listOfActors.add(actor);
@@ -43,8 +43,11 @@ public class Show {
         int index = -1;
         for (int i = 0; i < listOfActors.size(); i++) {
             if (listOfActors.get(i).getSurname().equalsIgnoreCase(surname)) {
+                if (index != -1) {
+                    System.out.println("В спектакле найдено несколько актёров с фамилией " + surname + ". Уточните имя.");
+                    return false;
+                }
                 index = i;
-                break;
             }
         }
         if (index == -1) {
@@ -57,7 +60,7 @@ public class Show {
             return false;
         }
         listOfActors.set(index, newActor);
-        System.out.println("В спектакле '" + title +"' актер " + oldActor + " заменен на " + newActor);
+        System.out.println("В спектакле '" + title + "' актер " + oldActor + " заменен на " + newActor);
         return true;
     }
 
@@ -74,7 +77,7 @@ public class Show {
         }
         int index = 1;
         for (Actor actor : listOfActors) {
-            System.out.println((index++) +". " + actor);
+            System.out.println((index++) + ". " + actor);
         }
         System.out.println("*".repeat(32) + "\n");
     }
